@@ -1,0 +1,65 @@
+{
+  "properties": {
+    "displayName": "Allowed OS versions",
+    "policyType": "Custom",
+    "mode": "All",
+    "metadata": {
+      "category": "Compute",
+      "createdBy": "481333cf-5964-4894-a7a1-33c8cadbcfbf",
+      "createdOn": "2019-05-31T10:51:47.5225622Z",
+      "updatedBy": "481333cf-5964-4894-a7a1-33c8cadbcfbf",
+      "updatedOn": "2019-05-31T12:18:40.8561661Z"
+    },
+    "parameters": {},
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "in": [
+              "Microsoft.Compute/disks",
+              "Microsoft.Compute/virtualMachines",
+              "Microsoft.Compute/VirtualMachineScaleSets"
+            ]
+          },
+          {
+            "not": {
+              "anyOf": [
+                {
+                  "field": "Microsoft.Compute/imageSku",
+                  "like": "2012-R2-Datacenter*"
+                },
+                {
+                  "field": "Microsoft.Compute/imageSku",
+                  "like": "2012-R2-Datacenter*"
+                },
+                {
+                  "field": "Microsoft.Compute/imageSku",
+                  "like": "2016-Datacenter*"
+                },
+                {
+                  "field": "Microsoft.Compute/imageSku",
+                  "like": "2019-Datacenter*"
+                },
+                {
+                  "field": "Microsoft.Compute/imageSku",
+                  "like": "7-RAW"
+                },
+                {
+                  "field": "Microsoft.Compute/imageSku",
+                  "like": "14.04.2-LTS"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "then": {
+        "effect": "deny"
+      }
+    }
+  },
+  "id": "/subscriptions/f3ae9d7c-b140-4b06-91c4-9dba033a10b3/providers/Microsoft.Authorization/policyDefinitions/5d0af593-c413-4b44-a5ed-e8355c45959a",
+  "type": "Microsoft.Authorization/policyDefinitions",
+  "name": "5d0af593-c413-4b44-a5ed-e8355c45959a"
+}
